@@ -32,13 +32,18 @@ jobs:
         with:
           github_user_name: ${{ github.repository_owner }}
           outputs: |
-            dist/github-snake.svg?color_snake=#238636
-            dist/github-snake-dark.svg?palette=github-dark&color_snake=#7ee787
+            dist/github-snake.svg?color_snake=#8a6510&color_dots=#ebedf0,#f5e0a3,#e8c45c,#c9971c,#8a6510
+            dist/github-snake-dark.svg?palette=github-dark&color_snake=#f2cc60&color_dots=#1d1b16,#3b2f14,#6e5419,#a8801f,#e3b341
 
       - name: 🟡 Generate Pac-Man
         uses: abozanona/pacman-contribution-graph@main
         with:
           github_user_name: ${{ github.repository_owner }}
+
+      - name: 🎨 Recolor Pac-Man to theme
+        run: |
+          node scripts/recolor.mjs dist/pacman-contribution-graph-dark.svg dark
+          node scripts/recolor.mjs dist/pacman-contribution-graph.svg light
 
       - name: 🚀 Push to output branch
         uses: crazy-max/ghaction-github-pages@v4

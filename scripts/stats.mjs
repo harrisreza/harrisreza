@@ -80,62 +80,47 @@ const fmt = n => n.toLocaleString('en-US');
 const fmtDate = s => s ? new Date(s + 'T00:00:00Z').toLocaleDateString('en', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }) : '-';
 
 function render(s) {
-  const W = 1200, H = 330;
-  const tiles = [
-    { label: 'TOTAL CONTRIBUTIONS', value: fmt(s.total), sub: `since ${fmtDate(s.since)}`, c: T.accent, icon: '◆' },
-    { label: `IN ${s.year}`, value: fmt(s.thisYear), sub: 'contributions this year', c: T.accent, icon: '▲' },
-    { label: 'CURRENT STREAK', value: `${s.current}`, sub: s.current === 1 ? 'day' : 'days', c: T.accent, icon: '●', flame: true },
-    { label: 'LONGEST STREAK', value: `${s.longest}`, sub: s.longest === 1 ? 'day' : 'days', c: T.accent, icon: '★' },
+  const W = 1200, H = 372, PAD = 40;
+  const plural = (n, w) => `${w}${n === 1 ? '' : 's'}`;
+  const figures = [
+    { label: 'Total contributions', value: fmt(s.total), sub: `since ${fmtDate(s.since)}` },
+    { label: `Contributions in ${s.year}`, value: fmt(s.thisYear), sub: 'year to date' },
+    { label: 'Current streak', value: s.current, sub: plural(s.current, 'day'), live: true },
+    { label: 'Longest streak', value: s.longest, sub: plural(s.longest, 'day') },
   ];
-  const tileSvg = tiles.map((t, i) => {
-    const x = 32 + (i % 2) * 262, y = 32 + Math.floor(i / 2) * 136;
-    return `<g transform="translate(${x},${y})">
-    <rect width="246" height="120" rx="16" fill="${T.panel}" stroke="${t.c}" stroke-opacity=".3"/>
-    <rect width="246" height="120" rx="16" fill="url(#tileGlow${i})"/>
-    <text x="20" y="32" font-family="${MONO}" font-size="11.5" letter-spacing="1.5" fill="${t.c}">${t.icon} ${t.label}</text>
-    <text x="20" y="80" font-size="40" font-weight="800" fill="${T.text}">${t.value}</text>
-    <text x="20" y="104" font-size="13" fill="${T.muted}">${t.sub}</text>
-    ${t.flame ? `<circle cx="214" cy="30" r="5" fill="${t.c}"><animate attributeName="r" values="4;7;4" dur="1.2s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;.4;1" dur="1.2s" repeatCount="indefinite"/></circle>` : ''}
-  </g>`;
+  const colW = (W - PAD * 2) / figures.length;
+  const figSvg = figures.map((f, i) => {
+    const x = PAD + i * colW + (i ? 28 : 0);
+    return `${i ? `<path d="M${PAD + i * colW + .5} 72V164" stroke="${T.faint}" stroke-opacity=".6"/>` : ''}
+    <text x="${x}" y="92" font-size="13" fill="${T.muted}">${f.label}</text>
+    <text x="${x}" y="140" font-size="44" font-weight="700" letter-spacing="-1" fill="${f.live ? T.accent : T.text}">${f.value}</text>
+    <text x="${x}" y="162" font-size="13" fill="${T.faint}">${f.sub}</text>
+    ${f.live && s.current ? `<circle cx="${x + 12 + String(f.value).length * 25}" cy="110" r="4" fill="${T.accent}"><animate attributeName="opacity" values="1;.2;1" dur="1.6s" repeatCount="indefinite"/></circle>` : ''}`;
   }).join('\n');
 
-  // Monthly bar chart
-  const cx = 572, cy = 32, cw = 596, ch = 256;
+  // Monthly bars, colored on the contribution scale like GitHub's own grid.
+  const top = 214, plotH = 72, baseY = top + plotH;
   const max = Math.max(1, ...s.months.map(m => m.count));
-  const plotTop = cy + 84, plotH = ch - 132, baseY = plotTop + plotH;
-  const bw = (cw - 48) / 12;
+  const bw = (W - PAD * 2) / 12;
   const bars = s.months.map((m, i) => {
-    const h = Math.max(3, (m.count / max) * plotH);
-    const x = cx + 24 + i * bw + bw * 0.18, w = bw * 0.64;
-    const last = i === 11;
-    return `<rect x="${x.toFixed(1)}" y="${(baseY - h).toFixed(1)}" width="${w.toFixed(1)}" height="${h.toFixed(1)}" rx="4" fill="${T.levels[Math.max(1, Math.ceil((m.count / max) * 4))]}">${last ? '<animate attributeName="fill-opacity" values="1;.55;1" dur="1.6s" repeatCount="indefinite"/>' : ''}</rect>
-    <text x="${(x + w / 2).toFixed(1)}" y="${baseY + 20}" text-anchor="middle" font-size="11" fill="${last ? T.text : T.faint}">${m.label}</text>
-    ${m.count ? `<text x="${(x + w / 2).toFixed(1)}" y="${(baseY - h - 6).toFixed(1)}" text-anchor="middle" font-family="${MONO}" font-size="10" fill="${T.muted}">${m.count}</text>` : ''}`;
+    const h = Math.max(2, (m.count / max) * plotH);
+    const x = PAD + i * bw + 6, w = bw - 12, last = i === 11;
+    return `<rect x="${x.toFixed(1)}" y="${(baseY - h).toFixed(1)}" width="${w.toFixed(1)}" height="${h.toFixed(1)}" rx="3" fill="${m.count ? T.levels[Math.max(1, Math.ceil((m.count / max) * 4))] : T.levels[0]}"/>
+    <text x="${(x + w / 2).toFixed(1)}" y="${baseY + 20}" text-anchor="middle" font-size="12" fill="${last ? T.text : T.muted}">${m.label}</text>
+    ${m.count ? `<text x="${(x + w / 2).toFixed(1)}" y="${(baseY - h - 7).toFixed(1)}" text-anchor="middle" font-family="${MONO}" font-size="11" fill="${T.muted}">${m.count}</text>` : ''}`;
   }).join('\n');
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" font-family="${FONT}">
-<defs>
-  <clipPath id="frame"><rect width="${W}" height="${H}" rx="20"/></clipPath>
-  <clipPath id="chart"><rect x="572" y="32" width="596" height="256" rx="16"/></clipPath>
-  <filter id="blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="60"/></filter>
-  ${tiles.map((t, i) => `<radialGradient id="tileGlow${i}" cx="1" cy="0" r="1"><stop offset="0" stop-color="${t.c}" stop-opacity=".12"/><stop offset="1" stop-color="${t.c}" stop-opacity="0"/></radialGradient>`).join('')}
-  <linearGradient id="scan" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".06"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
-</defs>
+<defs><clipPath id="frame"><rect width="${W}" height="${H}" rx="20"/></clipPath></defs>
 <g clip-path="url(#frame)">
-  <rect width="${W}" height="${H}" fill="${T.bg}"/>
-  <g filter="url(#blur)" opacity=".3">
-    <circle cx="1000" cy="40" r="170" fill="${T.accentDeep}"><animate attributeName="cy" values="20;110;20" dur="12s" repeatCount="indefinite"/></circle>
-  </g>
-  ${tileSvg}
-  <g>
-    <rect x="${cx}" y="${cy}" width="${cw}" height="${ch}" rx="16" fill="${T.panel}" stroke="${T.accent}" stroke-opacity=".3"/>
-    <text x="${cx + 24}" y="${cy + 32}" font-family="${MONO}" font-size="11.5" letter-spacing="1.5" fill="${T.accent}">▮ LAST 12 MONTHS</text>
-    <text x="${cx + 24}" y="${cy + 56}" font-size="13" fill="${T.muted}">Best day: <tspan fill="${T.text}" font-weight="700">${s.best.count}</tspan> contributions · ${fmtDate(s.best.date)}</text>
-    <path d="M${cx + 24} ${baseY + .5} H${cx + cw - 24}" stroke="${T.levels[0]}"/>
-    ${bars}
-    <rect x="${cx - 200}" y="${cy}" width="200" height="${ch}" fill="url(#scan)" clip-path="url(#chart)"><animate attributeName="x" values="${cx - 200};${cx + cw}" dur="5s" repeatCount="indefinite"/></rect>
-  </g>
-  <text x="${W - 32}" y="${H - 14}" text-anchor="end" font-family="${MONO}" font-size="10.5" fill="${T.faint}">updated ${new Date().toISOString().slice(0, 16).replace('T', ' ')} UTC · @${login}</text>
+  <rect width="${W}" height="${H}" fill="${T.panel}"/>
+  <text x="${PAD}" y="44" font-size="15" font-weight="700" fill="${T.text}">Contribution activity</text>
+  <text x="${W - PAD}" y="44" text-anchor="end" font-family="${MONO}" font-size="12" fill="${T.faint}">@${login} · updated ${new Date().toISOString().slice(0, 10)}</text>
+  ${figSvg}
+  <path d="M${PAD} 190.5H${W - PAD}" stroke="${T.faint}" stroke-opacity=".6"/>
+  <text x="${PAD}" y="${top - 2}" font-size="13" fill="${T.muted}">Last 12 months</text>
+  <text x="${W - PAD}" y="${top - 2}" text-anchor="end" font-size="13" fill="${T.muted}">Best day <tspan fill="${T.text}" font-weight="700">${s.best.count}</tspan> · ${fmtDate(s.best.date)}</text>
+  <g transform="translate(0,26)">${bars}</g>
 </g>
 <rect x=".5" y=".5" width="${W - 1}" height="${H - 1}" rx="20" fill="none" stroke="${T.border}" stroke-opacity=".28"/>
 </svg>

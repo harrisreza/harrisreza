@@ -119,7 +119,6 @@ for (const [file, icon, isUi, label] of [
   ['web', 'globe', true, 'harris.web.id'],
   ['linkedin', 'linkedin', false, 'LinkedIn'],
   ['instagram', 'instagram', false, 'Instagram'],
-  ['x', 'x', false, '@mharrisr'],
 ]) {
   const w = 56 + label.length * 8.6;
   write(`social-${file}.svg`, `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="40" viewBox="0 0 ${w} 40">
@@ -131,64 +130,21 @@ ${isUi ? ui(icon, 16, 11, 18) : brand(icon, 16, 11, 18)}
 }
 
 // ───────────────────────── SECTION TITLES ─────────────────────────
+// Self-contained dark banner so the title stays readable in GitHub light mode too.
 for (const [file, num, title] of [
-  ['about', '01', 'About Me'], ['stack', '02', 'Tech Stack'], ['projects', '03', 'Featured Projects'],
-  ['stats', '04', 'GitHub Stats'], ['arcade', '05', 'Contribution Arcade'],
+  ['stack', '01', 'Tech Stack'], ['projects', '02', 'Featured Projects'],
+  ['stats', '03', 'GitHub Stats'], ['arcade', '04', 'Contribution Arcade'],
 ]) {
-  const lineX = 20 + title.length * 15 + 24;
-  write(`title-${file}.svg`, `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="64" viewBox="0 0 1200 64">
-<defs><linearGradient id="l" x1="0" x2="1"><stop offset="0" stop-color="${T.accent}" stop-opacity=".7"/><stop offset="1" stop-color="${T.accent}" stop-opacity="0"/></linearGradient></defs>
-${[0, 1, 2, 3].map(i => `<rect x="0" y="${14 + i * 9}" width="7" height="7" rx="1.5" fill="${T.levels[4 - i]}"/>`).join('')}
-<text x="20" y="28" font-family="${MONO}" font-size="13" fill="${T.accent}" letter-spacing="2">${num} /</text>
-<text x="20" y="54" font-family="${FONT}" font-size="26" font-weight="800" fill="${T.text}">${title}</text>
-<rect x="${lineX}" y="44" width="${1200 - lineX}" height="1.5" fill="url(#l)"/>
-<rect y="41" width="7" height="7" rx="1.5" fill="${T.accent}"><animate attributeName="x" values="${lineX};1200" dur="4s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;0" dur="4s" repeatCount="indefinite"/></rect>
-</svg>
-`);
-}
-
-// ───────────────────────── TERMINAL ─────────────────────────
-{
-  const P = `<tspan fill="${T.accent}">harris</tspan><tspan fill="${T.muted}">@</tspan><tspan fill="${T.accentSoft}">surabaya</tspan><tspan fill="${T.muted}">:~$ </tspan>`;
-  const hi = s => `<tspan fill="${T.accent}">${s}</tspan>`;
-  const lines = [
-    { cmd: 'whoami' },
-    { out: `<tspan fill="${T.text}" font-weight="700">Mochamad Harris Reza</tspan><tspan fill="${T.muted}"> — Full Stack Software Engineer · Surabaya, Indonesia</tspan>` },
-    { cmd: 'cat focus.txt' },
-    { out: `${hi('▸')}<tspan fill="${T.text}"> HRIS · POS · LMS · SIMRS</tspan><tspan fill="${T.muted}"> — incl. BPJS &amp; SATUSEHAT bridging</tspan>` },
-    { out: `${hi('▸')}<tspan fill="${T.text}"> One backend → web + Android + iOS</tspan><tspan fill="${T.muted}"> with Flutter</tspan>` },
-    { out: `${hi('▸')}<tspan fill="${T.text}"> AWS certified · PostgreSQL</tspan><tspan fill="${T.muted}"> · realtime &amp; AI-powered features</tspan>` },
-    { cmd: 'ls ~/shipped | wc -l' },
-    { out: `<tspan fill="${T.accentSoft}">20+</tspan><tspan fill="${T.muted}">  # 5+ years and counting</tspan>` },
-    { cmd: 'echo $MOTTO' },
-    { out: `<tspan fill="${T.accentSoft}">"Solving real-world problems through code into impactful digital solutions."</tspan>` },
-  ];
-  let t = 0.4, y = 76, body = '';
-  lines.forEach((l, i) => {
-    if (l.cmd) {
-      const w = 200 + l.cmd.length * 9.6, dur = Math.max(0.35, l.cmd.length * 0.045);
-      body += `<clipPath id="c${i}"><rect x="28" y="${y - 17}" width="0" height="24"><animate attributeName="width" from="186" to="${w}" begin="${t.toFixed(2)}s" dur="${dur.toFixed(2)}s" fill="freeze"/></rect></clipPath>
-<text x="28" y="${y}" clip-path="url(#c${i})" opacity="0">${P}<tspan fill="${T.text}">${esc(l.cmd)}</tspan><set attributeName="opacity" to="1" begin="${t.toFixed(2)}s" fill="freeze"/></text>\n`;
-      t += dur + 0.25;
-    } else {
-      body += `<text x="28" y="${y}" opacity="0">${l.out}<animate attributeName="opacity" from="0" to="1" begin="${t.toFixed(2)}s" dur=".3s" fill="freeze"/></text>\n`;
-      t += 0.22;
-    }
-    y += l.cmd && i > 0 ? 28 : 26;
-    if (lines[i + 1]?.cmd) y += 8;
-  });
-  body += `<text x="28" y="${y}" opacity="0">${P}<set attributeName="opacity" to="1" begin="${t.toFixed(2)}s" fill="freeze"/></text>
-<rect x="216" y="${y - 16}" width="10" height="20" fill="${T.accent}" opacity="0"><set attributeName="opacity" to="1" begin="${t.toFixed(2)}s" fill="freeze"/><animate attributeName="fill-opacity" values="1;0;1" dur="1s" calcMode="discrete" repeatCount="indefinite"/></rect>`;
-  const W = 1200, H = y + 34;
-  write('terminal.svg', `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
-<defs>${frameDefs(W, H)}<style>text { font-family: ${MONO}; font-size: 16px; white-space: pre; }</style></defs>
+  const W = 1200, H = 64, lineX = 118 + title.length * 13.5 + 24;
+  write(`title-${file}.svg`, `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
+<defs>${frameDefs(W, H)}<linearGradient id="l" x1="0" x2="1"><stop offset="0" stop-color="${T.accent}" stop-opacity=".6"/><stop offset="1" stop-color="${T.accent}" stop-opacity="0"/></linearGradient></defs>
 <g clip-path="url(#frame)">
   <rect width="${W}" height="${H}" fill="${T.panel}"/>
-  <rect width="${W}" height="40" fill="${T.panel2}"/>
-  <path d="M0 40.5H${W}" stroke="${T.accent}" stroke-opacity=".2"/>
-  ${[2, 3, 4].map((l, i) => `<rect x="${20 + i * 20}" y="14" width="12" height="12" rx="3" fill="${T.levels[l]}"/>`).join('')}
-  <text x="${W / 2}" y="25" text-anchor="middle" fill="${T.muted}" font-size="13">harris@surabaya — ~/about</text>
-  ${body}
+  ${[0, 1, 2, 3].map(i => `<rect x="${24 + i * 11}" y="28" width="8" height="8" rx="2" fill="${T.levels[i + 1]}"/>`).join('')}
+  <text x="80" y="41" font-family="${MONO}" font-size="14" fill="${T.accent}" letter-spacing="1">${num}</text>
+  <text x="118" y="42" font-family="${FONT}" font-size="23" font-weight="700" fill="${T.text}">${title}</text>
+  <rect x="${lineX}" y="31.5" width="${W - lineX - 28}" height="1" fill="url(#l)"/>
+  <rect y="29" width="6" height="6" rx="1.5" fill="${T.accent}"><animate attributeName="x" values="${lineX};${W - 28}" dur="5s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;0" dur="5s" repeatCount="indefinite"/></rect>
 </g>
 ${frameBorder(W, H)}
 </svg>
@@ -219,13 +175,9 @@ function card({ file, title, host, desc, tags, W = 590, extra = '' }) {
   write(`card-${file}.svg`, `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" font-family="${FONT}">
 <defs>
   ${frameDefs(W, H)}
-  <radialGradient id="glow" cx="1" cy="0" r=".9"><stop offset="0" stop-color="${T.accent}" stop-opacity=".16"/><stop offset="1" stop-color="${T.accent}" stop-opacity="0"/></radialGradient>
-  <linearGradient id="sheen" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".045"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
 </defs>
 <g clip-path="url(#frame)">
   <rect width="${W}" height="${H}" fill="${T.panel}"/>
-  <rect width="${W}" height="${H}" fill="url(#glow)"/>
-  <rect y="0" width="160" height="${H}" fill="url(#sheen)" transform="skewX(-18)"><animate attributeName="x" values="-300;${W + 200}" dur="5s" repeatCount="indefinite"/></rect>
   <rect x="28" y="28" width="64" height="64" rx="18" fill="none" stroke="${T.accent}" stroke-opacity=".35"/>
   ${logo(file, 32, 32, 56)}
   <text x="104" y="56" font-size="24" font-weight="800" fill="${T.text}">${esc(title)}</text>
@@ -274,19 +226,24 @@ card({ file: 'pos', title: 'Kasir Cepat POS', host: '↗ harris-pos.vercel.app',
   desc: ['Online/offline POS & back office for multi-branch', 'stores: barcode, QRIS, Bluetooth printing.'], tags: ['Flutter', 'Next.js', 'QRIS'] });
 
 // ───────────────────────── TECH STACK TILES ─────────────────────────
+// Logos keep their original brand colors (devicon, as on harris.web.id).
+// The few whose originals are too dark for the panel use a Simple Icons glyph instead.
+const devicon = (n, x, y, size) => fs.readFileSync(path.join(here, 'icons/devicon', n + '.svg'), 'utf8')
+  .replace(/<\?xml[^>]*>/, '').replace(/<!--[\s\S]*?-->/g, '').trim()
+  .replace(/<svg\b[^>]*?(viewBox="[^"]*")[^>]*>/, `<svg x="${x}" y="${y}" width="${size}" height="${size}" $1>`);
 const STACK = [
-  ['html5', 'HTML'], ['css', 'CSS'], ['javascript', 'JavaScript'], ['typescript', 'TypeScript'], ['react', 'React'],
-  ['nextdotjs', 'Next.js'], ['vuedotjs', 'Vue'], ['tailwindcss', 'Tailwind'], ['sass', 'Sass'],
-  ['nodedotjs', 'Node.js'], ['php', 'PHP'], ['laravel', 'Laravel'], ['codeigniter', 'CodeIgniter'], ['go', 'Go'],
-  ['python', 'Python'], ['prisma', 'Prisma'], ['wordpress', 'WordPress'], ['flutter', 'Flutter'],
+  ['html5', 'HTML'], ['css3', 'CSS'], ['javascript', 'JavaScript'], ['typescript', 'TypeScript'], ['react', 'React'],
+  ['nextjs', 'Next.js'], ['vuejs', 'Vue'], ['tailwindcss', 'Tailwind'], ['sass', 'Sass'],
+  ['nodejs', 'Node.js'], ['php', 'PHP'], ['laravel', 'Laravel'], ['codeigniter', 'CodeIgniter'], ['go', 'Go'],
+  ['python', 'Python'], ['prisma', 'Prisma', '#ffffff'], ['wordpress', 'WordPress', '#3b9fd8'], ['flutter', 'Flutter'],
   ['dart', 'Dart'], ['postgresql', 'PostgreSQL'], ['mysql', 'MySQL'], ['mongodb', 'MongoDB'], ['firebase', 'Firebase'],
-  ['docker', 'Docker'], ['amazonwebservices', 'AWS'], ['vercel', 'Vercel'], ['git', 'Git'],
+  ['docker', 'Docker'], ['amazonwebservices', 'AWS', '#ff9900'], ['vercel', 'Vercel', '#ffffff'], ['git', 'Git'],
 ];
-for (const [n, label] of STACK) {
+for (const [n, label, glyph] of STACK) {
   write(`stack/${n}.svg`, `<svg xmlns="http://www.w3.org/2000/svg" width="104" height="104" viewBox="0 0 104 104">
-<rect x=".5" y=".5" width="103" height="103" rx="18" fill="${T.panel}" stroke="${T.accent}" stroke-opacity=".3"/>
-${brand(n, 34, 20, 36)}
-<text x="52" y="84" text-anchor="middle" font-family="${MONO}" font-size="${label.length > 9 ? 10 : 11.5}" fill="${T.muted}">${label}</text>
+<rect x=".5" y=".5" width="103" height="103" rx="18" fill="${T.panel}" stroke="${T.accent}" stroke-opacity=".28"/>
+${glyph ? brand(n, 33, 19, 38, glyph) : devicon(n, 30, 15, 44)}
+<text x="52" y="85" text-anchor="middle" font-family="${MONO}" font-size="${label.length > 9 ? 10 : 11.5}" fill="${T.muted}">${label}</text>
 </svg>
 `);
 }

@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="64" viewBox="0 0 1200 64">
-<defs><linearGradient id="l" x1="0" x2="1"><stop offset="0" stop-color="#39d353" stop-opacity=".7"/><stop offset="1" stop-color="#39d353" stop-opacity="0"/></linearGradient></defs>
-<rect x="0" y="14" width="7" height="7" rx="1.5" fill="#39d353"/><rect x="0" y="23" width="7" height="7" rx="1.5" fill="#26a641"/><rect x="0" y="32" width="7" height="7" rx="1.5" fill="#006d32"/><rect x="0" y="41" width="7" height="7" rx="1.5" fill="#0e4429"/>
-<text x="20" y="28" font-family="Consolas, 'Fira Code', 'JetBrains Mono', Menlo, monospace" font-size="13" fill="#39d353" letter-spacing="2">01 /</text>
-<text x="20" y="54" font-family="'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif" font-size="26" font-weight="800" fill="#e6edf3">About Me</text>
-<rect x="164" y="44" width="1036" height="1.5" fill="url(#l)"/>
-<rect y="41" width="7" height="7" rx="1.5" fill="#39d353"><animate attributeName="x" values="164;1200" dur="4s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;0" dur="4s" repeatCount="indefinite"/></rect>
-</svg>

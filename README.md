@@ -4,31 +4,24 @@
   <a href="https://harris.web.id"><img src="./assets/social-web.svg" height="40" alt="harris.web.id"/></a>
   <a href="https://linkedin.com/in/harisreza"><img src="./assets/social-linkedin.svg" height="40" alt="LinkedIn"/></a>
   <a href="https://instagram.com/mharrisr"><img src="./assets/social-instagram.svg" height="40" alt="Instagram"/></a>
-  <a href="https://x.com/mharrisr"><img src="./assets/social-x.svg" height="40" alt="X"/></a>
 </p>
 
 <br/>
-
-<img src="./assets/title-about.svg" width="100%" alt="About Me"/>
-
-<a href="https://harris.web.id"><img src="./assets/terminal.svg" width="100%" alt="whoami — Mochamad Harris Reza, Full Stack Software Engineer from Surabaya. HRIS, POS, LMS, SIMRS; Flutter; AWS; 20+ projects shipped."/></a>
-
-<br/><br/>
 
 <img src="./assets/title-stack.svg" width="100%" alt="Tech Stack"/>
 
 <p align="center">
   <a href="https://developer.mozilla.org/docs/Web/HTML"><img src="./assets/stack/html5.svg" width="78" alt="HTML"/></a>
-  <a href="https://developer.mozilla.org/docs/Web/CSS"><img src="./assets/stack/css.svg" width="78" alt="CSS"/></a>
+  <a href="https://developer.mozilla.org/docs/Web/CSS"><img src="./assets/stack/css3.svg" width="78" alt="CSS"/></a>
   <a href="https://developer.mozilla.org/docs/Web/JavaScript"><img src="./assets/stack/javascript.svg" width="78" alt="JavaScript"/></a>
   <a href="https://www.typescriptlang.org"><img src="./assets/stack/typescript.svg" width="78" alt="TypeScript"/></a>
   <a href="https://react.dev"><img src="./assets/stack/react.svg" width="78" alt="React"/></a>
-  <a href="https://nextjs.org"><img src="./assets/stack/nextdotjs.svg" width="78" alt="Next.js"/></a>
-  <a href="https://vuejs.org"><img src="./assets/stack/vuedotjs.svg" width="78" alt="Vue"/></a>
+  <a href="https://nextjs.org"><img src="./assets/stack/nextjs.svg" width="78" alt="Next.js"/></a>
+  <a href="https://vuejs.org"><img src="./assets/stack/vuejs.svg" width="78" alt="Vue"/></a>
   <a href="https://tailwindcss.com"><img src="./assets/stack/tailwindcss.svg" width="78" alt="Tailwind CSS"/></a>
   <a href="https://sass-lang.com"><img src="./assets/stack/sass.svg" width="78" alt="Sass"/></a>
   <br/>
-  <a href="https://nodejs.org"><img src="./assets/stack/nodedotjs.svg" width="78" alt="Node.js"/></a>
+  <a href="https://nodejs.org"><img src="./assets/stack/nodejs.svg" width="78" alt="Node.js"/></a>
   <a href="https://www.php.net"><img src="./assets/stack/php.svg" width="78" alt="PHP"/></a>
   <a href="https://laravel.com"><img src="./assets/stack/laravel.svg" width="78" alt="Laravel"/></a>
   <a href="https://codeigniter.com"><img src="./assets/stack/codeigniter.svg" width="78" alt="CodeIgniter"/></a>

@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="104" height="104" viewBox="0 0 104 104">
-<rect x=".5" y=".5" width="103" height="103" rx="18" fill="#0b1410" stroke="#39d353" stroke-opacity=".3"/>
-<g transform="translate(34,20) scale(1.5)" fill="#39d353"><path d="M24 22.525H0l12-21.05 12 21.05z"/></g>
-<text x="52" y="84" text-anchor="middle" font-family="Consolas, 'Fira Code', 'JetBrains Mono', Menlo, monospace" font-size="11.5" fill="#8b949e">Vercel</text>
+<rect x=".5" y=".5" width="103" height="103" rx="18" fill="#13120f" stroke="#e3b341" stroke-opacity=".28"/>
+<g transform="translate(33,19) scale(1.5833333333333333)" fill="#ffffff"><path d="M24 22.525H0l12-21.05 12 21.05z"/></g>
+<text x="52" y="85" text-anchor="middle" font-family="Consolas, 'Fira Code', 'JetBrains Mono', Menlo, monospace" font-size="11.5" fill="#a39c8a">Vercel</text>
 </svg>

@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="167.8" height="40" viewBox="0 0 167.8 40">
-<rect x=".5" y=".5" width="166.8" height="39" rx="20" fill="#0b1410" stroke="#39d353" stroke-opacity=".4"/>
-<g transform="translate(16,11) scale(0.75)" fill="none" stroke="#39d353" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" />
+<rect x=".5" y=".5" width="166.8" height="39" rx="20" fill="#13120f" stroke="#e3b341" stroke-opacity=".4"/>
+<g transform="translate(16,11) scale(0.75)" fill="none" stroke="#e3b341" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" />
   <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
   <path d="M2 12h20" /></g>
-<text x="44" y="25" font-family="'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600" fill="#e6edf3">harris.web.id</text>
+<text x="44" y="25" font-family="'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600" fill="#f0ece2">harris.web.id</text>
 </svg>
