@@ -1,4 +1,4 @@
-name: 🐍 Snake & 🟡 Pac-Man
+name: 🎮 Snake, Pac-Man & Stats
 
 on:
   schedule:
@@ -15,8 +15,20 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 📊 Generate stats card
+        run: node scripts/stats.mjs dist/stats.svg
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_USER: ${{ github.repository_owner }}
+
       - name: 🐍 Generate snake
-        uses: Platane/snk@v3
+        uses: Platane/snk/svg-only@v3
         with:
           github_user_name: ${{ github.repository_owner }}
           outputs: |
