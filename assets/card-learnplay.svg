@@ -1,52 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="420" height="200" viewBox="0 0 420 200">
+<svg xmlns="http://www.w3.org/2000/svg" width="590" height="230" viewBox="0 0 590 230" font-family="'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif">
 <defs>
-  <linearGradient id="border" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0" stop-color="#fbbf24"/><stop offset=".5" stop-color="#0d1117" stop-opacity="0"/><stop offset="1" stop-color="#f97316"/>
-    <animateTransform attributeName="gradientTransform" type="rotate" from="0 .5 .5" to="360 .5 .5" dur="5s" repeatCount="indefinite"/>
-  </linearGradient>
-  <linearGradient id="title" x1="0" x2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#fbbf24"/></linearGradient>
-  <radialGradient id="glow"><stop offset="0" stop-color="#fbbf24" stop-opacity=".45"/><stop offset="1" stop-color="#fbbf24" stop-opacity="0"/></radialGradient>
-  <clipPath id="clip"><rect x="2" y="2" width="416" height="196" rx="16"/></clipPath>
-  <style>
-    text { font-family: 'Segoe UI', Ubuntu, 'Helvetica Neue', sans-serif; }
-    .t { font-size: 22px; font-weight: 800; }
-    .h { font-size: 11.5px; fill: #8b949e; font-family: Consolas, 'Fira Code', monospace; }
-    .d { font-size: 13px; fill: #c9d1d9; }
-    .tag { font-size: 11px; font-weight: 600; }
-    .live { font-size: 11px; font-weight: 700; fill: #3fb950; letter-spacing: 1px; }
-    .in { }
-    @keyframes up { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-    .float { animation: float 3s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
-    @keyframes float { 0%,100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-5px) rotate(4deg); } }
-  </style>
+  <clipPath id="frame"><rect width="590" height="230" rx="20"/></clipPath>
+  <radialGradient id="glow" cx="1" cy="0" r=".9"><stop offset="0" stop-color="#39d353" stop-opacity=".16"/><stop offset="1" stop-color="#39d353" stop-opacity="0"/></radialGradient>
+  <linearGradient id="sheen" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".045"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
 </defs>
-<rect x="1" y="1" width="418" height="198" rx="17" fill="url(#border)"/>
-<rect x="2.5" y="2.5" width="415" height="195" rx="16" fill="#0d1117"/>
-<g clip-path="url(#clip)">
-  <circle cx="380" cy="20" r="110" fill="url(#glow)">
-    <animate attributeName="r" values="95;125;95" dur="4s" repeatCount="indefinite"/>
-  </circle>
-  <rect x="-200" y="0" width="80" height="200" fill="#ffffff" fill-opacity=".04" transform="skewX(-20)">
-    <animate attributeName="x" values="-200;600" dur="4s" repeatCount="indefinite"/>
-  </rect>
+<g clip-path="url(#frame)">
+  <rect width="590" height="230" fill="#0b1410"/>
+  <rect width="590" height="230" fill="url(#glow)"/>
+  <rect y="0" width="160" height="230" fill="url(#sheen)" transform="skewX(-18)"><animate attributeName="x" values="-300;790" dur="5s" repeatCount="indefinite"/></rect>
+  <rect x="28" y="28" width="64" height="64" rx="18" fill="none" stroke="#39d353" stroke-opacity=".35"/>
+  <svg x="32" y="32" width="56" height="56" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="128" fill="#0e7c66"/><path d="M176 128v248h160" fill="none" stroke="#fbfaf7" stroke-width="64" stroke-linecap="round" stroke-linejoin="round"/><path d="M300 132c0-15 16-24 29-17l78 44c13 8 13 27 0 35l-78 44c-13 7-29-2-29-17z" fill="#f5b400"/></svg>
+  <text x="104" y="56" font-size="24" font-weight="800" fill="#e6edf3">LearnPlay</text>
+  <text x="104" y="78" font-family="Consolas, 'Fira Code', 'JetBrains Mono', Menlo, monospace" font-size="12.5" fill="#8b949e">↗ harris-learnplay.vercel.app</text>
+  <g transform="translate(516,50)">
+  <circle r="4" fill="#39d353"><animate attributeName="opacity" values="1;.3;1" dur="1.4s" repeatCount="indefinite"/></circle>
+  <circle r="4" fill="none" stroke="#39d353"><animate attributeName="r" values="4;11" dur="1.4s" repeatCount="indefinite"/><animate attributeName="opacity" values=".9;0" dur="1.4s" repeatCount="indefinite"/></circle>
+  <text x="12" y="4" font-family="Consolas, 'Fira Code', 'JetBrains Mono', Menlo, monospace" font-size="11" font-weight="700" letter-spacing="1.5" fill="#39d353">LIVE</text></g>
+  <text x="32" y="128" font-size="14.5" fill="#e6edf3" fill-opacity=".85">Gamified LMS: courses, XP &amp; streaks, CBT / CPNS</text>
+  <text x="32" y="150" font-size="14.5" fill="#e6edf3" fill-opacity=".85">tryouts, QR live quiz &amp; verifiable certificates.</text>
+  <g transform="translate(32,178)"><rect width="73.80000000000001" height="24" rx="6" fill="#0e4429" fill-opacity=".6" stroke="#39d353" stroke-opacity=".3"/><text x="36.900000000000006" y="16.5" text-anchor="middle" font-family="Consolas, 'Fira Code', 'JetBrains Mono', Menlo, monospace" font-size="11.5" fill="#7ee787">Next.js</text></g><g transform="translate(113.80000000000001,178)"><rect width="110.80000000000001" height="24" rx="6" fill="#0e4429" fill-opacity=".6" stroke="#39d353" stroke-opacity=".3"/><text x="55.400000000000006" y="16.5" text-anchor="middle" font-family="Consolas, 'Fira Code', 'JetBrains Mono', Menlo, monospace" font-size="11.5" fill="#7ee787">Gamification</text></g><g transform="translate(232.60000000000002,178)"><rect width="81.2" height="24" rx="6" fill="#0e4429" fill-opacity=".6" stroke="#39d353" stroke-opacity=".3"/><text x="40.6" y="16.5" text-anchor="middle" font-family="Consolas, 'Fira Code', 'JetBrains Mono', Menlo, monospace" font-size="11.5" fill="#7ee787">AI Tutor</text></g>
+  <g transform="translate(534,178) scale(1)" fill="none" stroke="#39d353" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10" />
+  <path d="M7 17 17 7" /></g>
+  
 </g>
-<g class="in">
-  <rect x="28" y="26" width="54" height="54" rx="14" fill="#fbbf24" fill-opacity=".14" stroke="#fbbf24" stroke-opacity=".5"/>
-  <text x="55" y="64" text-anchor="middle" font-size="28" class="float">🎮</text>
-</g>
-<g class="in" style="animation-delay:.15s">
-  <text x="96" y="50" class="t" fill="url(#title)">LearnPlay</text>
-  <text x="96" y="70" class="h">↗ harris-learnplay.vercel.app</text>
-</g>
-<g transform="translate(330,40)">
-  <circle r="4" fill="#3fb950"><animate attributeName="opacity" values="1;.25;1" dur="1.4s" repeatCount="indefinite"/></circle>
-  <circle r="4" fill="none" stroke="#3fb950"><animate attributeName="r" values="4;11" dur="1.4s" repeatCount="indefinite"/><animate attributeName="opacity" values=".9;0" dur="1.4s" repeatCount="indefinite"/></circle>
-  <text x="12" y="4" class="live">LIVE</text>
-</g>
-<g class="in" style="animation-delay:.3s">
-  <text x="28" y="112" class="d">Gamified LMS: courses, XP &amp; streaks, CBT /</text>
-  <text x="28" y="132" class="d">CPNS tryouts, QR live quiz &amp; certificates.</text>
-</g>
-<g class="in" style="animation-delay:.45s"><g transform="translate(28,158)"><rect width="70.4" height="24" rx="12" fill="#fbbf24" fill-opacity=".12" stroke="#fbbf24" stroke-opacity=".45"/><text x="35.2" y="16" text-anchor="middle" class="tag" fill="#fbbf24">Next.js</text></g><g transform="translate(106.4,158)"><rect width="106.4" height="24" rx="12" fill="#fbbf24" fill-opacity=".12" stroke="#fbbf24" stroke-opacity=".45"/><text x="53.2" y="16" text-anchor="middle" class="tag" fill="#fbbf24">Gamification</text></g><g transform="translate(220.8,158)"><rect width="77.6" height="24" rx="12" fill="#fbbf24" fill-opacity=".12" stroke="#fbbf24" stroke-opacity=".45"/><text x="38.8" y="16" text-anchor="middle" class="tag" fill="#fbbf24">AI Tutor</text></g></g>
-<text x="392" y="176" text-anchor="end" font-size="18" fill="#fbbf24">➜<animate attributeName="x" values="388;396;388" dur="1.2s" repeatCount="indefinite"/></text>
+<rect x=".5" y=".5" width="589" height="229" rx="20" fill="none" stroke="#39d353" stroke-opacity=".28"/>
 </svg>

@@ -3,12 +3,11 @@
 //        node scripts/stats.mjs out.svg --demo   (render with fake data, no token needed)
 import fs from 'node:fs';
 import path from 'node:path';
+import { T, FONT, MONO } from './theme.mjs';
 
 const outFile = process.argv[2] || 'dist/stats.svg';
 const demo = process.argv.includes('--demo');
 const login = process.env.GH_USER || 'harrisreza';
-const FONT = "'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif";
-const MONO = "Consolas, 'Fira Code', 'JetBrains Mono', Menlo, monospace";
 
 async function gql(query, variables) {
   const res = await fetch('https://api.github.com/graphql', {
@@ -83,19 +82,19 @@ const fmtDate = s => s ? new Date(s + 'T00:00:00Z').toLocaleDateString('en', { d
 function render(s) {
   const W = 1200, H = 330;
   const tiles = [
-    { label: 'TOTAL CONTRIBUTIONS', value: fmt(s.total), sub: `since ${fmtDate(s.since)}`, c: '#a78bfa', icon: '◆' },
-    { label: `IN ${s.year}`, value: fmt(s.thisYear), sub: 'contributions this year', c: '#22d3ee', icon: '▲' },
-    { label: 'CURRENT STREAK', value: `${s.current}`, sub: s.current === 1 ? 'day 🔥' : 'days 🔥', c: '#fb923c', icon: '●', flame: true },
-    { label: 'LONGEST STREAK', value: `${s.longest}`, sub: s.longest === 1 ? 'day' : 'days', c: '#4ade80', icon: '★' },
+    { label: 'TOTAL CONTRIBUTIONS', value: fmt(s.total), sub: `since ${fmtDate(s.since)}`, c: T.accent, icon: '◆' },
+    { label: `IN ${s.year}`, value: fmt(s.thisYear), sub: 'contributions this year', c: T.accent, icon: '▲' },
+    { label: 'CURRENT STREAK', value: `${s.current}`, sub: s.current === 1 ? 'day' : 'days', c: T.accent, icon: '●', flame: true },
+    { label: 'LONGEST STREAK', value: `${s.longest}`, sub: s.longest === 1 ? 'day' : 'days', c: T.accent, icon: '★' },
   ];
   const tileSvg = tiles.map((t, i) => {
     const x = 32 + (i % 2) * 262, y = 32 + Math.floor(i / 2) * 136;
     return `<g transform="translate(${x},${y})">
-    <rect width="246" height="120" rx="16" fill="#0b1020" stroke="${t.c}" stroke-opacity=".35"/>
+    <rect width="246" height="120" rx="16" fill="${T.panel}" stroke="${t.c}" stroke-opacity=".3"/>
     <rect width="246" height="120" rx="16" fill="url(#tileGlow${i})"/>
     <text x="20" y="32" font-family="${MONO}" font-size="11.5" letter-spacing="1.5" fill="${t.c}">${t.icon} ${t.label}</text>
-    <text x="20" y="80" font-size="40" font-weight="800" fill="#fff">${t.value}</text>
-    <text x="20" y="104" font-size="13" fill="#8b949e">${t.sub}</text>
+    <text x="20" y="80" font-size="40" font-weight="800" fill="${T.text}">${t.value}</text>
+    <text x="20" y="104" font-size="13" fill="${T.muted}">${t.sub}</text>
     ${t.flame ? `<circle cx="214" cy="30" r="5" fill="${t.c}"><animate attributeName="r" values="4;7;4" dur="1.2s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;.4;1" dur="1.2s" repeatCount="indefinite"/></circle>` : ''}
   </g>`;
   }).join('\n');
@@ -109,38 +108,36 @@ function render(s) {
     const h = Math.max(3, (m.count / max) * plotH);
     const x = cx + 24 + i * bw + bw * 0.18, w = bw * 0.64;
     const last = i === 11;
-    return `<rect x="${x.toFixed(1)}" y="${(baseY - h).toFixed(1)}" width="${w.toFixed(1)}" height="${h.toFixed(1)}" rx="5" fill="url(#bar)"${last ? '' : ' fill-opacity=".85"'}>${last ? '<animate attributeName="fill-opacity" values="1;.55;1" dur="1.6s" repeatCount="indefinite"/>' : ''}</rect>
-    <text x="${(x + w / 2).toFixed(1)}" y="${baseY + 20}" text-anchor="middle" font-size="11" fill="${last ? '#e2e8f0' : '#6e7681'}">${m.label}</text>
-    ${m.count ? `<text x="${(x + w / 2).toFixed(1)}" y="${(baseY - h - 6).toFixed(1)}" text-anchor="middle" font-family="${MONO}" font-size="10" fill="#8b949e">${m.count}</text>` : ''}`;
+    return `<rect x="${x.toFixed(1)}" y="${(baseY - h).toFixed(1)}" width="${w.toFixed(1)}" height="${h.toFixed(1)}" rx="4" fill="${T.levels[Math.max(1, Math.ceil((m.count / max) * 4))]}">${last ? '<animate attributeName="fill-opacity" values="1;.55;1" dur="1.6s" repeatCount="indefinite"/>' : ''}</rect>
+    <text x="${(x + w / 2).toFixed(1)}" y="${baseY + 20}" text-anchor="middle" font-size="11" fill="${last ? T.text : T.faint}">${m.label}</text>
+    ${m.count ? `<text x="${(x + w / 2).toFixed(1)}" y="${(baseY - h - 6).toFixed(1)}" text-anchor="middle" font-family="${MONO}" font-size="10" fill="${T.muted}">${m.count}</text>` : ''}`;
   }).join('\n');
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" font-family="${FONT}">
 <defs>
-  <clipPath id="frame"><rect width="${W}" height="${H}" rx="24"/></clipPath>
+  <clipPath id="frame"><rect width="${W}" height="${H}" rx="20"/></clipPath>
   <clipPath id="chart"><rect x="572" y="32" width="596" height="256" rx="16"/></clipPath>
   <filter id="blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="60"/></filter>
-  <linearGradient id="bar" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#22d3ee"/></linearGradient>
-  ${tiles.map((t, i) => `<radialGradient id="tileGlow${i}" cx="1" cy="0" r="1"><stop offset="0" stop-color="${t.c}" stop-opacity=".18"/><stop offset="1" stop-color="${t.c}" stop-opacity="0"/></radialGradient>`).join('')}
+  ${tiles.map((t, i) => `<radialGradient id="tileGlow${i}" cx="1" cy="0" r="1"><stop offset="0" stop-color="${t.c}" stop-opacity=".12"/><stop offset="1" stop-color="${t.c}" stop-opacity="0"/></radialGradient>`).join('')}
   <linearGradient id="scan" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".06"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
 </defs>
 <g clip-path="url(#frame)">
-  <rect width="${W}" height="${H}" fill="#070b14"/>
-  <g filter="url(#blur)" opacity=".45">
-    <circle cx="200" cy="300" r="160" fill="#7c3aed"><animate attributeName="cx" values="160;320;160" dur="14s" repeatCount="indefinite"/></circle>
-    <circle cx="1000" cy="40" r="170" fill="#0891b2"><animate attributeName="cy" values="20;110;20" dur="12s" repeatCount="indefinite"/></circle>
+  <rect width="${W}" height="${H}" fill="${T.bg}"/>
+  <g filter="url(#blur)" opacity=".3">
+    <circle cx="1000" cy="40" r="170" fill="${T.accentDeep}"><animate attributeName="cy" values="20;110;20" dur="12s" repeatCount="indefinite"/></circle>
   </g>
   ${tileSvg}
   <g>
-    <rect x="${cx}" y="${cy}" width="${cw}" height="${ch}" rx="16" fill="#0b1020" stroke="#a78bfa" stroke-opacity=".3"/>
-    <text x="${cx + 24}" y="${cy + 32}" font-family="${MONO}" font-size="11.5" letter-spacing="1.5" fill="#a78bfa">▮ LAST 12 MONTHS</text>
-    <text x="${cx + 24}" y="${cy + 56}" font-size="13" fill="#8b949e">Best day: <tspan fill="#fff" font-weight="700">${s.best.count}</tspan> contributions · ${fmtDate(s.best.date)}</text>
-    <path d="M${cx + 24} ${baseY + .5} H${cx + cw - 24}" stroke="#30363d"/>
+    <rect x="${cx}" y="${cy}" width="${cw}" height="${ch}" rx="16" fill="${T.panel}" stroke="${T.accent}" stroke-opacity=".3"/>
+    <text x="${cx + 24}" y="${cy + 32}" font-family="${MONO}" font-size="11.5" letter-spacing="1.5" fill="${T.accent}">▮ LAST 12 MONTHS</text>
+    <text x="${cx + 24}" y="${cy + 56}" font-size="13" fill="${T.muted}">Best day: <tspan fill="${T.text}" font-weight="700">${s.best.count}</tspan> contributions · ${fmtDate(s.best.date)}</text>
+    <path d="M${cx + 24} ${baseY + .5} H${cx + cw - 24}" stroke="${T.levels[0]}"/>
     ${bars}
     <rect x="${cx - 200}" y="${cy}" width="200" height="${ch}" fill="url(#scan)" clip-path="url(#chart)"><animate attributeName="x" values="${cx - 200};${cx + cw}" dur="5s" repeatCount="indefinite"/></rect>
   </g>
-  <text x="${W - 32}" y="${H - 14}" text-anchor="end" font-family="${MONO}" font-size="10.5" fill="#484f58">updated ${new Date().toISOString().slice(0, 16).replace('T', ' ')} UTC · @${login}</text>
+  <text x="${W - 32}" y="${H - 14}" text-anchor="end" font-family="${MONO}" font-size="10.5" fill="${T.faint}">updated ${new Date().toISOString().slice(0, 16).replace('T', ' ')} UTC · @${login}</text>
 </g>
-<rect x=".5" y=".5" width="${W - 1}" height="${H - 1}" rx="24" fill="none" stroke="#a78bfa" stroke-opacity=".25"/>
+<rect x=".5" y=".5" width="${W - 1}" height="${H - 1}" rx="20" fill="none" stroke="${T.border}" stroke-opacity=".28"/>
 </svg>
 `;
 }
