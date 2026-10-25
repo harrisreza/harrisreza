@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="56" viewBox="0 0 1200 56">
+<defs><linearGradient id="l" x1="0" x2="1"><stop offset="0" stop-color="#e3b341" stop-opacity=".7"/><stop offset="1" stop-color="#e3b341" stop-opacity="0"/></linearGradient></defs>
+<rect x="4" y="24" width="8" height="8" rx="2" fill="#3b2f14"/><rect x="15" y="24" width="8" height="8" rx="2" fill="#6e5419"/><rect x="26" y="24" width="8" height="8" rx="2" fill="#a8801f"/><rect x="37" y="24" width="8" height="8" rx="2" fill="#e3b341"/>
+<text x="56" y="35" font-family="Consolas, 'Fira Code', 'JetBrains Mono', Menlo, monospace" font-size="14" fill="#a8801f" letter-spacing="1">03</text>
+<text x="92" y="37" font-family="'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif" font-size="26" font-weight="800" fill="#f2cc60">GitHub Stats</text>
+<rect x="286" y="28" width="910" height="1.5" fill="url(#l)"/>
+<rect y="25.5" width="6" height="6" rx="1.5" fill="#e3b341"><animate attributeName="x" values="286;1194" dur="5s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;0" dur="5s" repeatCount="indefinite"/></rect>
+</svg>

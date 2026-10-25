@@ -130,25 +130,28 @@ ${isUi ? ui(icon, 16, 11, 18) : brand(icon, 16, 11, 18)}
 }
 
 // ───────────────────────── SECTION TITLES ─────────────────────────
-// Self-contained dark banner so the title stays readable in GitHub light mode too.
+// No panel behind the text, just gold type. Two variants (dark / light page) so the
+// title stays readable in both GitHub themes; the README picks one with <picture>.
+const TITLE_INK = {
+  dark: { text: '#f2cc60', num: '#a8801f', line: '#e3b341', sq: T.levels },
+  light: { text: '#7a5700', num: '#a8801f', line: '#8a6510', sq: [T.lightLevels[0], '#e8c45c', '#c9971c', '#a8801f', '#8a6510'] },
+};
 for (const [file, num, title] of [
   ['stack', '01', 'Tech Stack'], ['projects', '02', 'Featured Projects'],
   ['stats', '03', 'GitHub Stats'], ['arcade', '04', 'Contribution Arcade'],
 ]) {
-  const W = 1200, H = 64, lineX = 118 + title.length * 13.5 + 24;
-  write(`title-${file}.svg`, `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
-<defs>${frameDefs(W, H)}<linearGradient id="l" x1="0" x2="1"><stop offset="0" stop-color="${T.accent}" stop-opacity=".6"/><stop offset="1" stop-color="${T.accent}" stop-opacity="0"/></linearGradient></defs>
-<g clip-path="url(#frame)">
-  <rect width="${W}" height="${H}" fill="${T.panel}"/>
-  ${[0, 1, 2, 3].map(i => `<rect x="${24 + i * 11}" y="28" width="8" height="8" rx="2" fill="${T.levels[i + 1]}"/>`).join('')}
-  <text x="80" y="41" font-family="${MONO}" font-size="14" fill="${T.accent}" letter-spacing="1">${num}</text>
-  <text x="118" y="42" font-family="${FONT}" font-size="23" font-weight="700" fill="${T.text}">${title}</text>
-  <rect x="${lineX}" y="31.5" width="${W - lineX - 28}" height="1" fill="url(#l)"/>
-  <rect y="29" width="6" height="6" rx="1.5" fill="${T.accent}"><animate attributeName="x" values="${lineX};${W - 28}" dur="5s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;0" dur="5s" repeatCount="indefinite"/></rect>
-</g>
-${frameBorder(W, H)}
+  for (const [mode, ink] of Object.entries(TITLE_INK)) {
+    const W = 1200, H = 56, lineX = 92 + title.length * 14.5 + 20;
+    write(`title-${file}-${mode}.svg`, `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
+<defs><linearGradient id="l" x1="0" x2="1"><stop offset="0" stop-color="${ink.line}" stop-opacity=".7"/><stop offset="1" stop-color="${ink.line}" stop-opacity="0"/></linearGradient></defs>
+${[1, 2, 3, 4].map((l, i) => `<rect x="${4 + i * 11}" y="24" width="8" height="8" rx="2" fill="${ink.sq[l]}"/>`).join('')}
+<text x="56" y="35" font-family="${MONO}" font-size="14" fill="${ink.num}" letter-spacing="1">${num}</text>
+<text x="92" y="37" font-family="${FONT}" font-size="26" font-weight="800" fill="${ink.text}">${title}</text>
+<rect x="${lineX}" y="28" width="${W - lineX - 4}" height="1.5" fill="url(#l)"/>
+<rect y="25.5" width="6" height="6" rx="1.5" fill="${ink.line}"><animate attributeName="x" values="${lineX};${W - 6}" dur="5s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;0" dur="5s" repeatCount="indefinite"/></rect>
 </svg>
 `);
+  }
 }
 
 // ───────────────────────── PROJECT CARDS ─────────────────────────
@@ -222,7 +225,7 @@ card({ file: 'learnplay', title: 'LearnPlay', host: '↗ harris-learnplay.vercel
   desc: ['Gamified LMS: courses, XP & streaks, CBT / CPNS', 'tryouts, QR live quiz & verifiable certificates.'], tags: ['Next.js', 'Gamification', 'AI Tutor'] });
 card({ file: 'hris', title: 'HRIS', host: '↗ harris-hris.vercel.app',
   desc: ['Face attendance with liveness & geofence, leave &', 'overtime approvals, payroll with BPJS / PPh 21.'], tags: ['Next.js', 'Supabase', 'RLS'] });
-card({ file: 'pos', title: 'Kasir Cepat POS', host: '↗ harris-pos.vercel.app',
+card({ file: 'pos', title: 'Kasir Central', host: '↗ harris-pos.vercel.app',
   desc: ['Online/offline POS & back office for multi-branch', 'stores: barcode, QRIS, Bluetooth printing.'], tags: ['Flutter', 'Next.js', 'QRIS'] });
 
 // ───────────────────────── TECH STACK TILES ─────────────────────────
@@ -231,21 +234,26 @@ card({ file: 'pos', title: 'Kasir Cepat POS', host: '↗ harris-pos.vercel.app',
 const devicon = (n, x, y, size) => fs.readFileSync(path.join(here, 'icons/devicon', n + '.svg'), 'utf8')
   .replace(/<\?xml[^>]*>/, '').replace(/<!--[\s\S]*?-->/g, '').trim()
   .replace(/<svg\b[^>]*?(viewBox="[^"]*")[^>]*>/, `<svg x="${x}" y="${y}" width="${size}" height="${size}" $1>`);
+// Logo only: no panel, no label. Logos that are black or white in their original
+// form would vanish on one of GitHub's themes, so those get a -dark / -light pair
+// that the README picks with <picture>.
+const BOX = 60, LOGO = 44, OFF = (BOX - LOGO) / 2;
+const logoSvg = inner => `<svg xmlns="http://www.w3.org/2000/svg" width="${BOX}" height="${BOX}" viewBox="0 0 ${BOX} ${BOX}">${inner}</svg>\n`;
 const STACK = [
-  ['html5', 'HTML'], ['css3', 'CSS'], ['javascript', 'JavaScript'], ['typescript', 'TypeScript'], ['react', 'React'],
-  ['nextjs', 'Next.js'], ['vuejs', 'Vue'], ['tailwindcss', 'Tailwind'], ['sass', 'Sass'],
-  ['nodejs', 'Node.js'], ['php', 'PHP'], ['laravel', 'Laravel'], ['codeigniter', 'CodeIgniter'], ['go', 'Go'],
-  ['python', 'Python'], ['prisma', 'Prisma', '#ffffff'], ['wordpress', 'WordPress', '#3b9fd8'], ['flutter', 'Flutter'],
-  ['dart', 'Dart'], ['postgresql', 'PostgreSQL'], ['mysql', 'MySQL'], ['mongodb', 'MongoDB'], ['firebase', 'Firebase'],
-  ['docker', 'Docker'], ['amazonwebservices', 'AWS', '#ff9900'], ['vercel', 'Vercel', '#ffffff'], ['git', 'Git'],
+  'html5', 'css3', 'javascript', 'typescript', 'react', 'nextjs', 'vuejs', 'tailwindcss', 'sass',
+  'nodejs', 'php', 'laravel', 'codeigniter', 'go', 'python', 'prisma', 'wordpress', 'flutter',
+  'dart', 'postgresql', 'mysql', 'mongodb', 'firebase', 'docker', 'amazonwebservices', 'vercel', 'git',
 ];
-for (const [n, label, glyph] of STACK) {
-  write(`stack/${n}.svg`, `<svg xmlns="http://www.w3.org/2000/svg" width="104" height="104" viewBox="0 0 104 104">
-<rect x=".5" y=".5" width="103" height="103" rx="18" fill="${T.panel}" stroke="${T.accent}" stroke-opacity=".28"/>
-${glyph ? brand(n, 33, 19, 38, glyph) : devicon(n, 30, 15, 44)}
-<text x="52" y="85" text-anchor="middle" font-family="${MONO}" font-size="${label.length > 9 ? 10 : 11.5}" fill="${T.muted}">${label}</text>
-</svg>
-`);
+// Simple Icons glyph + color where devicon's original is unusable on a bare page:
+// wordmark-only / too dark (WordPress, AWS), or pure black/white (Next.js, Prisma, Vercel),
+// which would vanish on one of GitHub's themes — those use a neutral gray visible on both.
+const GLYPH = {
+  wordpress: ['wordpress', '#3b9fd8'], amazonwebservices: ['amazonwebservices', '#ff9900'],
+  nextjs: ['nextdotjs', '#6e7681'], prisma: ['prisma', '#6e7681'], vercel: ['vercel', '#6e7681'],
+};
+for (const n of STACK) {
+  const g = GLYPH[n];
+  write(`stack/${n}.svg`, logoSvg(g ? brand(g[0], OFF, OFF, LOGO, g[1]) : devicon(n, OFF, OFF, LOGO)));
 }
 
 // ───────────────────────── FOOTER ─────────────────────────
