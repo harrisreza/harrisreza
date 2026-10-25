@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="308" viewBox="0 0 860 308">
+<defs>
+  <linearGradient id="bd" x1="0" x2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset=".5" stop-color="#2563eb"/><stop offset="1" stop-color="#06b6d4"/></linearGradient>
+  <style>text { font-family: Consolas, 'Fira Code', 'JetBrains Mono', Menlo, monospace; font-size: 15px; white-space: pre; }</style>
+</defs>
+<rect x="1" y="1" width="858" height="306" rx="14" fill="#0d1117" stroke="url(#bd)" stroke-width="2"/>
+<path d="M2 36 H858" stroke="#30363d"/>
+<circle cx="24" cy="19" r="6.5" fill="#ff5f56"/><circle cx="46" cy="19" r="6.5" fill="#ffbd2e"/><circle cx="68" cy="19" r="6.5" fill="#27c93f"/>
+<text x="430" y="24" text-anchor="middle" fill="#8b949e" font-size="13">harris@surabaya — zsh — 120×30</text>
+<clipPath id="c0"><rect x="24" y="54" width="0" height="22"><animate attributeName="width" from="175" to="247.6" begin="0.60s" dur="0.50s" fill="freeze"/></rect></clipPath>
+<text x="24" y="70" clip-path="url(#c0)" opacity="0"><tspan fill="#7ee787">harris</tspan><tspan fill="#8b949e">@</tspan><tspan fill="#79c0ff">surabaya</tspan><tspan fill="#8b949e">:</tspan><tspan fill="#d2a8ff">~</tspan><tspan fill="#8b949e">$ </tspan><tspan fill="#f0f6fc">whoami</tspan><set attributeName="opacity" to="1" begin="0.60s" fill="freeze"/></text>
+<text x="24" y="96" opacity="0"><tspan fill="#f0f6fc" font-weight="700">Mochamad Harris Reza</tspan><tspan fill="#8b949e"> — Full Stack Software Engineer · Surabaya, ID</tspan><animate attributeName="opacity" from="0" to="1" begin="1.45s" dur=".35s" fill="freeze"/></text>
+<clipPath id="c2"><rect x="24" y="106" width="0" height="22"><animate attributeName="width" from="175" to="439.6" begin="1.95s" dur="1.56s" fill="freeze"/></rect></clipPath>
+<text x="24" y="122" clip-path="url(#c2)" opacity="0"><tspan fill="#7ee787">harris</tspan><tspan fill="#8b949e">@</tspan><tspan fill="#79c0ff">surabaya</tspan><tspan fill="#8b949e">:</tspan><tspan fill="#d2a8ff">~</tspan><tspan fill="#8b949e">$ </tspan><tspan fill="#f0f6fc">cat stack.json | jq .daily</tspan><set attributeName="opacity" to="1" begin="1.95s" fill="freeze"/></text>
+<text x="24" y="148" opacity="0"><tspan fill="#a5d6ff">["Next.js", "React", "Laravel", "Go", "Flutter", "Node.js", "PostgreSQL"]</tspan><animate attributeName="opacity" from="0" to="1" begin="3.86s" dur=".35s" fill="freeze"/></text>
+<clipPath id="c4"><rect x="24" y="158" width="0" height="22"><animate attributeName="width" from="175" to="382" begin="4.36s" dur="1.20s" fill="freeze"/></rect></clipPath>
+<text x="24" y="174" clip-path="url(#c4)" opacity="0"><tspan fill="#7ee787">harris</tspan><tspan fill="#8b949e">@</tspan><tspan fill="#79c0ff">surabaya</tspan><tspan fill="#8b949e">:</tspan><tspan fill="#d2a8ff">~</tspan><tspan fill="#8b949e">$ </tspan><tspan fill="#f0f6fc">ls ./shipped --count</tspan><set attributeName="opacity" to="1" begin="4.36s" fill="freeze"/></text>
+<text x="24" y="200" opacity="0"><tspan fill="#ffa657">wedding-os  learnplay  hris  pos  portfolio  bersamamu  ...</tspan><tspan fill="#3fb950">  [20+ projects · 5+ yrs]</tspan><animate attributeName="opacity" from="0" to="1" begin="5.91s" dur=".35s" fill="freeze"/></text>
+<clipPath id="c6"><rect x="24" y="210" width="0" height="22"><animate attributeName="width" from="175" to="295.6" begin="6.41s" dur="0.66s" fill="freeze"/></rect></clipPath>
+<text x="24" y="226" clip-path="url(#c6)" opacity="0"><tspan fill="#7ee787">harris</tspan><tspan fill="#8b949e">@</tspan><tspan fill="#79c0ff">surabaya</tspan><tspan fill="#8b949e">:</tspan><tspan fill="#d2a8ff">~</tspan><tspan fill="#8b949e">$ </tspan><tspan fill="#f0f6fc">echo $MOTTO</tspan><set attributeName="opacity" to="1" begin="6.41s" fill="freeze"/></text>
+<text x="24" y="252" opacity="0"><tspan fill="#f2cc60">"Solving real-world problems through code into impactful digital solutions."</tspan><animate attributeName="opacity" from="0" to="1" begin="7.42s" dur=".35s" fill="freeze"/></text>
+<text x="24" y="278" opacity="0"><tspan fill="#7ee787">harris</tspan><tspan fill="#8b949e">@</tspan><tspan fill="#79c0ff">surabaya</tspan><tspan fill="#8b949e">:</tspan><tspan fill="#d2a8ff">~</tspan><tspan fill="#8b949e">$ </tspan><tspan fill="#f0f6fc">▋<animate attributeName="opacity" values="1;0;1" dur="1s" begin="7.92s" repeatCount="indefinite"/></tspan><set attributeName="opacity" to="1" begin="7.92s" fill="freeze"/></text>
+</svg>

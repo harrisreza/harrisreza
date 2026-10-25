@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="200" viewBox="0 0 420 200">
+<defs>
+  <linearGradient id="border" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#22d3ee"/><stop offset=".5" stop-color="#0d1117" stop-opacity="0"/><stop offset="1" stop-color="#3b82f6"/>
+    <animateTransform attributeName="gradientTransform" type="rotate" from="0 .5 .5" to="360 .5 .5" dur="5s" repeatCount="indefinite"/>
+  </linearGradient>
+  <linearGradient id="title" x1="0" x2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#22d3ee"/></linearGradient>
+  <radialGradient id="glow"><stop offset="0" stop-color="#22d3ee" stop-opacity=".45"/><stop offset="1" stop-color="#22d3ee" stop-opacity="0"/></radialGradient>
+  <clipPath id="clip"><rect x="2" y="2" width="416" height="196" rx="16"/></clipPath>
+  <style>
+    text { font-family: 'Segoe UI', Ubuntu, 'Helvetica Neue', sans-serif; }
+    .t { font-size: 22px; font-weight: 800; }
+    .h { font-size: 11.5px; fill: #8b949e; font-family: Consolas, 'Fira Code', monospace; }
+    .d { font-size: 13px; fill: #c9d1d9; }
+    .tag { font-size: 11px; font-weight: 600; }
+    .live { font-size: 11px; font-weight: 700; fill: #3fb950; letter-spacing: 1px; }
+    .in { opacity: 0; animation: up .7s ease-out forwards; }
+    @keyframes up { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .float { animation: float 3s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+    @keyframes float { 0%,100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-5px) rotate(4deg); } }
+  </style>
+</defs>
+<rect x="1" y="1" width="418" height="198" rx="17" fill="url(#border)"/>
+<rect x="2.5" y="2.5" width="415" height="195" rx="16" fill="#0d1117"/>
+<g clip-path="url(#clip)">
+  <circle cx="380" cy="20" r="110" fill="url(#glow)">
+    <animate attributeName="r" values="95;125;95" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  <rect x="-200" y="0" width="80" height="200" fill="#ffffff" fill-opacity=".04" transform="skewX(-20)">
+    <animate attributeName="x" values="-200;600" dur="4s" repeatCount="indefinite"/>
+  </rect>
+</g>
+<g class="in">
+  <rect x="28" y="26" width="54" height="54" rx="14" fill="#22d3ee" fill-opacity=".14" stroke="#22d3ee" stroke-opacity=".5"/>
+  <text x="55" y="64" text-anchor="middle" font-size="28" class="float">👥</text>
+</g>
+<g class="in" style="animation-delay:.15s">
+  <text x="96" y="50" class="t" fill="url(#title)">HRIS</text>
+  <text x="96" y="70" class="h">↗ harris-hris.vercel.app</text>
+</g>
+<g transform="translate(330,40)">
+  <circle r="4" fill="#3fb950"><animate attributeName="opacity" values="1;.25;1" dur="1.4s" repeatCount="indefinite"/></circle>
+  <circle r="4" fill="none" stroke="#3fb950"><animate attributeName="r" values="4;11" dur="1.4s" repeatCount="indefinite"/><animate attributeName="opacity" values=".9;0" dur="1.4s" repeatCount="indefinite"/></circle>
+  <text x="12" y="4" class="live">LIVE</text>
+</g>
+<g class="in" style="animation-delay:.3s">
+  <text x="28" y="112" class="d">Face attendance + liveness &amp; geofence,</text>
+  <text x="28" y="132" class="d">leave/overtime approvals, payroll BPJS/PPh21.</text>
+</g>
+<g class="in" style="animation-delay:.45s"><g transform="translate(28,158)"><rect width="70.4" height="24" rx="12" fill="#22d3ee" fill-opacity=".12" stroke="#22d3ee" stroke-opacity=".45"/><text x="35.2" y="16" text-anchor="middle" class="tag" fill="#22d3ee">Next.js</text></g><g transform="translate(106.4,158)"><rect width="77.6" height="24" rx="12" fill="#22d3ee" fill-opacity=".12" stroke="#22d3ee" stroke-opacity=".45"/><text x="38.8" y="16" text-anchor="middle" class="tag" fill="#22d3ee">Supabase</text></g><g transform="translate(192,158)"><rect width="41.6" height="24" rx="12" fill="#22d3ee" fill-opacity=".12" stroke="#22d3ee" stroke-opacity=".45"/><text x="20.8" y="16" text-anchor="middle" class="tag" fill="#22d3ee">RLS</text></g></g>
+<text x="392" y="176" text-anchor="end" font-size="18" fill="#22d3ee">➜<animate attributeName="x" values="388;396;388" dur="1.2s" repeatCount="indefinite"/></text>
+</svg>
