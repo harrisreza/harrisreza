@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="372" viewBox="0 0 1200 372" font-family="'Segoe UI', Ubuntu, 'Helvetica Neue', Arial, sans-serif">
+<defs><clipPath id="frame"><rect width="1200" height="372" rx="20"/></clipPath></defs>
+<g clip-path="url(#frame)">
+  <rect width="1200" height="372" fill="#13120f"/>
+  <text x="40" y="44" font-size="15" font-weight="700" fill="#f0ece2">Contribution activity</text>
+  <text x="1160" y="44" text-anchor="end" font-family="Consolas, 'Fira Code', 'JetBrains Mono', Menlo, monospace" font-size="12" fill="#5c5649">@harrisreza · updated 2026-10-31</text>
+  
+    <text x="40" y="92" font-size="13" fill="#a39c8a">Total contributions</text>
+    <text x="40" y="140" font-size="44" font-weight="700" letter-spacing="-1" fill="#f0ece2">185</text>
+    <text x="40" y="162" font-size="13" fill="#5c5649">since Jan 1, 2024</text>
+    
+<path d="M320.5 72V164" stroke="#5c5649" stroke-opacity=".6"/>
+    <text x="348" y="92" font-size="13" fill="#a39c8a">Contributions in 2026</text>
+    <text x="348" y="140" font-size="44" font-weight="700" letter-spacing="-1" fill="#f0ece2">184</text>
+    <text x="348" y="162" font-size="13" fill="#5c5649">year to date</text>
+    
+<path d="M600.5 72V164" stroke="#5c5649" stroke-opacity=".6"/>
+    <text x="628" y="92" font-size="13" fill="#a39c8a">Current streak</text>
+    <text x="628" y="140" font-size="44" font-weight="700" letter-spacing="-1" fill="#e3b341">0</text>
+    <text x="628" y="162" font-size="13" fill="#5c5649">days</text>
+    
+<path d="M880.5 72V164" stroke="#5c5649" stroke-opacity=".6"/>
+    <text x="908" y="92" font-size="13" fill="#a39c8a">Longest streak</text>
+    <text x="908" y="140" font-size="44" font-weight="700" letter-spacing="-1" fill="#f0ece2">9</text>
+    <text x="908" y="162" font-size="13" fill="#5c5649">days</text>
+    
+  <path d="M40 190.5H1160" stroke="#5c5649" stroke-opacity=".6"/>
+  <text x="40" y="212" font-size="13" fill="#a39c8a">Last 12 months</text>
+  <text x="1160" y="212" text-anchor="end" font-size="13" fill="#a39c8a">Best day <tspan fill="#f0ece2" font-weight="700">12</tspan> · May 3, 2026</text>
+  <g transform="translate(0,26)"><rect x="46.0" y="284.0" width="81.3" height="2.0" rx="3" fill="#1d1b16"/>
+    <text x="86.7" y="306" text-anchor="middle" font-size="12" fill="#a39c8a">Nov</text>
+    
+<rect x="139.3" y="284.0" width="81.3" height="2.0" rx="3" fill="#1d1b16"/>
+    <text x="180.0" y="306" text-anchor="middle" font-size="12" fill="#a39c8a">Dec</text>
+    
+<rect x="232.7" y="278.4" width="81.3" height="7.6" rx="3" fill="#3b2f14"/>
+    <text x="273.3" y="306" text-anchor="middle" font-size="12" fill="#a39c8a">Jan</text>
+    <text x="273.3" y="271.4" text-anchor="middle" font-family="Consolas, 'Fira Code', 'JetBrains Mono', Menlo, monospace" font-size="11" fill="#a39c8a">8</text>
+<rect x="326.0" y="282.2" width="81.3" height="3.8" rx="3" fill="#3b2f14"/>
+    <text x="366.7" y="306" text-anchor="middle" font-size="12" fill="#a39c8a">Feb</text>
+    <text x="366.7" y="275.2" text-anchor="middle" font-family="Consolas, 'Fira Code', 'JetBrains Mono', Menlo, monospace" font-size="11" fill="#a39c8a">4</text>
+<rect x="419.3" y="284.0" width="81.3" height="2.0" rx="3" fill="#1d1b16"/>
+    <text x="460.0" y="306" text-anchor="middle" font-size="12" fill="#a39c8a">Mar</text>
+    
+<rect x="512.7" y="282.2" width="81.3" height="3.8" rx="3" fill="#3b2f14"/>
+    <text x="553.3" y="306" text-anchor="middle" font-size="12" fill="#a39c8a">Apr</text>
+    <text x="553.3" y="275.2" text-anchor="middle" font-family="Consolas, 'Fira Code', 'JetBrains Mono', Menlo, monospace" font-size="11" fill="#a39c8a">4</text>
+<rect x="606.0" y="220.6" width="81.3" height="65.4" rx="3" fill="#e3b341"/>
+    <text x="646.7" y="306" text-anchor="middle" font-size="12" fill="#a39c8a">May</text>
+    <text x="646.7" y="213.6" text-anchor="middle" font-family="Consolas, 'Fira Code', 'JetBrains Mono', Menlo, monospace" font-size="11" fill="#a39c8a">69</text>
+<rect x="699.3" y="278.4" width="81.3" height="7.6" rx="3" fill="#3b2f14"/>
+    <text x="740.0" y="306" text-anchor="middle" font-size="12" fill="#a39c8a">Jun</text>
+    <text x="740.0" y="271.4" text-anchor="middle" font-family="Consolas, 'Fira Code', 'JetBrains Mono', Menlo, monospace" font-size="11" fill="#a39c8a">8</text>
+<rect x="792.7" y="284.0" width="81.3" height="2.0" rx="3" fill="#3b2f14"/>
+    <text x="833.3" y="306" text-anchor="middle" font-size="12" fill="#a39c8a">Jul</text>
+    <text x="833.3" y="277.0" text-anchor="middle" font-family="Consolas, 'Fira Code', 'JetBrains Mono', Menlo, monospace" font-size="11" fill="#a39c8a">2</text>
+<rect x="886.0" y="284.0" width="81.3" height="2.0" rx="3" fill="#3b2f14"/>
+    <text x="926.7" y="306" text-anchor="middle" font-size="12" fill="#a39c8a">Aug</text>
+    <text x="926.7" y="277.0" text-anchor="middle" font-family="Consolas, 'Fira Code', 'JetBrains Mono', Menlo, monospace" font-size="11" fill="#a39c8a">1</text>
+<rect x="979.3" y="274.6" width="81.3" height="11.4" rx="3" fill="#3b2f14"/>
+    <text x="1020.0" y="306" text-anchor="middle" font-size="12" fill="#a39c8a">Sep</text>
+    <text x="1020.0" y="267.6" text-anchor="middle" font-family="Consolas, 'Fira Code', 'JetBrains Mono', Menlo, monospace" font-size="11" fill="#a39c8a">12</text>
+<rect x="1072.7" y="214.0" width="81.3" height="72.0" rx="3" fill="#e3b341"/>
+    <text x="1113.3" y="306" text-anchor="middle" font-size="12" fill="#f0ece2">Oct</text>
+    <text x="1113.3" y="207.0" text-anchor="middle" font-family="Consolas, 'Fira Code', 'JetBrains Mono', Menlo, monospace" font-size="11" fill="#a39c8a">76</text></g>
+</g>
+<rect x=".5" y=".5" width="1199" height="371" rx="20" fill="none" stroke="#e3b341" stroke-opacity=".28"/>
+</svg>
